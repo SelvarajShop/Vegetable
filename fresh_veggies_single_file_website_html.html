@@ -1,0 +1,224 @@
+<!--
+  Fresh Veggies - Single-file responsive HTML website
+  - Replace PHONE_NUMBER and WHATSAPP_NUMBER with your number (numbers without + or spaces, e.g. 9198xxxxxxxx)
+  - Replace GOOGLE_FORM_URL with your Google Form's share URL if you want an embedded order form
+  - To host: upload this file as index.html to GitHub Pages (repo -> Settings -> Pages) or Netlify drag-and-drop
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fresh Veggies – Nerul</title>
+  <meta name="description" content="Fresh vegetables delivered to your doorstep in Nerul. Daily fresh produce, honest prices.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#27ae60;--accent-dark:#1e8a4a;--muted:#6b7280;--card:#ffffff;--bg:#f7fbf7}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#0f172a;background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    header{background:linear-gradient(90deg, rgba(39,174,96,0.08), rgba(39,174,96,0.02));padding:22px 16px;border-bottom:1px solid rgba(15,23,42,0.04)}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:28px 0}
+    .hero-inner{display:flex;flex-direction:column;gap:14px}
+    .kicker{color:var(--accent-dark);font-weight:600}
+    .hero h2{margin:0;font-size:28px}
+    .hero p{margin:0;color:var(--muted);max-width:680px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;font-weight:600;display:inline-flex;gap:10px;align-items:center}
+    .btn.secondary{background:white;border:1px solid rgba(15,23,42,0.06);color:#0f172a}
+
+    /* products */
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(12,12,13,0.04);display:flex;gap:12px;align-items:center}
+    .card img{width:86px;height:86px;object-fit:cover;border-radius:8px}
+    .card h3{margin:0;font-size:16px}
+    .price{font-weight:700;color:var(--accent-dark)}
+
+    /* order panel */
+    .panel{background:linear-gradient(180deg,white, #fbfff9);border-radius:12px;padding:14px;box-shadow:0 10px 30px rgba(12,12,13,0.04)}
+    .panel h4{margin:0 0 8px 0}
+    .input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:8px}
+
+    footer{padding:20px 0;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media(min-width:860px){
+      .hero{grid-template-columns:1fr 420px}
+      .products{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(min-width:1100px){.hero h2{font-size:34px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo">FV</div>
+        <div>
+          <h1>Fresh Veggies – Nerul</h1>
+          <p>Farm fresh, daily — delivered to your doorstep</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="kicker">Fresh • Local • Affordable</div>
+        <h2>Fresh vegetables delivered same day in Nerul</h2>
+        <p>We source vegetables directly from local farmers every morning and deliver to your home. Quality checked produce, honest pricing, and contactless delivery.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#order" id="whatsappBtn"><span>Order on WhatsApp</span></a>
+          <a class="btn secondary" href="#products">View Products</a>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <div style="background:white;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);">🚚 Free delivery above ₹200</div>
+          <div style="background:white;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);">🕒 Fresh stock daily at 8:00 AM</div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h4>Quick order</h4>
+          <form id="quickOrder">
+            <input class="input" type="text" id="name" placeholder="Your name" required>
+            <input class="input" type="tel" id="phone" placeholder="Phone (with country code)" required>
+            <input class="input" type="text" id="items" placeholder="Items & qty (e.g. Tomatoes 2kg)">
+            <input class="input" type="text" id="address" placeholder="Delivery address">
+            <button class="btn" type="submit">Send Order</button>
+          </form>
+          <p style="margin-top:8px;color:var(--muted);font-size:13px">Or use WhatsApp for faster response.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="products" style="margin-top:26px">
+      <h3 style="margin:0 0 12px 0">Our Products & Prices</h3>
+      <div class="products" id="productsGrid">
+        <!-- JS will populate products -->
+      </div>
+    </section>
+
+    <section id="offers" style="margin-top:22px">
+      <h3 style="margin:0 0 12px 0">Weekly Offers</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:white;padding:12px;border-radius:12px;border:1px solid rgba(15,23,42,0.04);">Buy 2 kg Tomatoes & get 500g free — valid till Sunday</div>
+      </div>
+    </section>
+
+    <section id="order" style="margin-top:22px;display:grid;gap:12px">
+      <h3 style="margin:0">Place an Order</h3>
+      <!-- Replace GOOGLE_FORM_URL with your Google Form share link if you want embed -->
+      <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(15,23,42,0.04);background:white;padding:12px">
+        <p style="margin:0 0 8px 0;color:var(--muted)">Prefer a form? Use the form below (optional).</p>
+        <iframe id="orderForm" src="GOOGLE_FORM_URL" style="width:100%;height:480px;border:0" title="Order Form"></iframe>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:22px">
+      <h3 style="margin:0 0 8px 0">About Us</h3>
+      <p style="margin:0;color:var(--muted)">We are a neighbourhood vegetable shop at Nerul, delivering fresh produce sourced directly from nearby farms every morning. Contact us for bulk orders and daily subscriptions.</p>
+    </section>
+
+    <section id="contact" style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <div style="flex:1;min-width:220px">
+        <h3 style="margin:0 0 8px 0">Contact & Location</h3>
+        <p style="margin:0;color:var(--muted)">Phone / WhatsApp: <strong id="phoneText">+91 98XXXXXXXX</strong></p>
+        <p style="margin:0;color:var(--muted)">Delivery Area: Nerul, Belapur & nearby</p>
+      </div>
+      <div style="min-width:260px">
+        <!-- Simple map image from Unsplash for look. Replace with real Google Maps link on your site if you want. -->
+        <img src="https://images.unsplash.com/photo-1490806848247-1f6ee9f9a1b4?auto=format&fit=crop&w=800&q=60" alt="map" style="width:100%;border-radius:8px;object-fit:cover">
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Fresh Veggies – Nerul</div>
+      <div style="color:var(--muted);font-size:13px">Built with love • Contact: <span id="phoneFooter">+91 98XXXXXXXX</span></div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== Replace these with your real values ======
+    const PHONE_NUMBER = '9198XXXXXXXX'; // for display (with country code)
+    const WHATSAPP_NUMBER = '9198XXXXXXXX'; // for wa.me link (no +)
+    const GOOGLE_FORM_URL = '';
+    // ================================================
+
+    // sample product list
+    const products = [
+      {name:'Tomatoes', price:'₹30/kg', img:'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=800&q=60'},
+      {name:'Potatoes', price:'₹25/kg', img:'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=60'},
+      {name:'Onions', price:'₹35/kg', img:'https://images.unsplash.com/photo-1582515073490-399813c9a2d6?auto=format&fit=crop&w=800&q=60'},
+      {name:'Carrots', price:'₹50/kg', img:'https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=800&q=60'},
+      {name:'Spinach', price:'₹20/bunch', img:'https://images.unsplash.com/photo-1603010790576-2b8f8d0b5a2a?auto=format&fit=crop&w=800&q=60'},
+      {name:'Cauliflower', price:'₹40/kg', img:'https://images.unsplash.com/photo-1604908177522-4dbb2b2b13f4?auto=format&fit=crop&w=800&q=60'}
+    ];
+
+    // render products
+    const grid = document.getElementById('productsGrid');
+    products.forEach(p=>{
+      const el = document.createElement('div'); el.className='card';
+      el.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <div>
+          <h3>${p.name}</h3>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Fresh & quality checked</div>
+          <div class="price" style="margin-top:6px">${p.price}</div>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+
+    // set phone texts
+    document.getElementById('phoneText').textContent = '+' + PHONE_NUMBER;
+    document.getElementById('phoneFooter').textContent = '+' + PHONE_NUMBER;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // whatsapp button
+    const waBtn = document.getElementById('whatsappBtn');
+    waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi, I want to place an order')}`;
+
+    // quick order -> opens whatsapp with filled message
+    document.getElementById('quickOrder').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const items = document.getElementById('items').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const message = `Order from ${name}%0APhone: ${phone}%0AItems: ${items}%0AAddress: ${address}`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,'_blank');
+    });
+
+    // embed form if provided
+    (function(){
+      if(GOOGLE_FORM_URL && GOOGLE_FORM_URL.trim().length>0){
+        document.getElementById('orderForm').src = GOOGLE_FORM_URL;
+      } else {
+        // hide iframe if blank
+        const iframe = document.getElementById('orderForm');
+        iframe.style.display = 'none';
+        const parent = iframe.parentElement;
+        const p = document.createElement('p');
+        p.style.color='var(--muted)';
+        p.textContent = 'No form embedded. To add a Google Form, paste its share URL into the GOOGLE_FORM_URL variable in the HTML (see top comments).';
+        parent.appendChild(p);
+      }
+    })();
+  </script>
+</body>
+</html>
